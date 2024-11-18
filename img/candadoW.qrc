@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="cct">
+    <file>candado.png</file>
+  </qresource>
+</RCC>
