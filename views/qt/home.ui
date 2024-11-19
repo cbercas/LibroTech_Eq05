@@ -287,10 +287,12 @@ QPushButton:hover{
 	border: 0px;
 	text-align: left;
     padding-left: 10px;
+	color: rgb(0, 0, 0);
 }
 
 QPushButton:hover{
 	background-color: rgb(166, 129, 99);
+	color: rgb(0, 0, 0);
 }</string>
             </property>
             <property name="text">
@@ -327,10 +329,12 @@ QPushButton:hover{
 	border: 0px;
 	text-align: left;
     padding-left: 10px;
+	color: rgb(0, 0, 0);
 }
 
 QPushButton:hover{
 	background-color: rgb(166, 129, 99);
+	color: rgb(0, 0, 0);
 }</string>
             </property>
             <property name="text">
@@ -367,10 +371,12 @@ QPushButton:hover{
 	border: 0px;
 	text-align: left;
     padding-left: 10px;
+	color: rgb(0, 0, 0);
 }
 
 QPushButton:hover{
 	background-color: rgb(166, 129, 99);
+	color: rgb(0, 0, 0);
 }
 </string>
             </property>
@@ -421,10 +427,12 @@ QPushButton:hover{
 	border: 0px;
 	text-align: left;
     padding-left: 10px;
+	color: rgb(0, 0, 0);
 }
 
 QPushButton:hover{
 	background-color: rgb(166, 129, 99);
+	color: rgb(0, 0, 0);
 }
 
 </string>
@@ -625,6 +633,9 @@ QPushButton:hover{
                            <strikeout>false</strikeout>
                           </font>
                          </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 0, 0);</string>
+                         </property>
                          <property name="text">
                           <string>¿Quieres algo en especial?</string>
                          </property>
@@ -776,6 +787,9 @@ QLineEdit:focus {
                            <bold>true</bold>
                           </font>
                          </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 0, 0);</string>
+                         </property>
                          <property name="text">
                           <string>Libros almacenados en la Base de Datos</string>
                          </property>
@@ -832,6 +846,9 @@ QLineEdit:focus {
                               <height>0</height>
                              </size>
                             </property>
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(0, 0, 0);</string>
+                            </property>
                             <property name="orientation">
                              <enum>Qt::Orientation::Horizontal</enum>
                             </property>
@@ -857,7 +874,11 @@ QLineEdit:focus {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QTableView" name="tableView"/>
+                        <widget class="QTableView" name="tableView">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 0, 0);</string>
+                         </property>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -919,6 +940,9 @@ QLineEdit:focus {
                  <pointsize>12</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);</string>
+               </property>
                <property name="text">
                 <string>Configuración</string>
                </property>
@@ -929,6 +953,9 @@ QLineEdit:focus {
              </item>
              <item>
               <widget class="Line" name="line">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);</string>
+               </property>
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -953,10 +980,12 @@ QLineEdit:focus {
 	border: 0px;
 	text-align: left;
     padding-left: 10px;
+	color: rgb(0, 0, 0);
 }
 
 QPushButton:hover{
 	background-color: rgb(166, 129, 99);
+	color: rgb(0, 0, 0);
 }</string>
                </property>
                <property name="text">

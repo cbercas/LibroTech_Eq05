@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(193, 161, 136);\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"img/prueba/settings.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u"../../img/prueba/settings.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_settings.setIcon(icon)
 
         self.horizontalLayout_2.addWidget(self.btn_settings)
@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(193, 161, 136);\n"
 "}")
         icon1 = QIcon()
-        icon1.addFile(u"img/prueba/minus-sign.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u"../../img/prueba/minus-sign.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_minimize.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.btn_minimize)
@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(193, 161, 136);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"img/prueba/stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon2.addFile(u"../../img/prueba/stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_maximize.setIcon(icon2)
 
         self.horizontalLayout_2.addWidget(self.btn_maximize)
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(193, 161, 136);\n"
 "}")
         icon3 = QIcon()
-        icon3.addFile(u"img/prueba/close.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(u"../../img/prueba/close.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_close.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.btn_close)
@@ -151,13 +151,15 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "	text-align: left;\n"
 "    padding-left: 10px;\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 129, 99);\n"
+"	color: rgb(0, 0, 0);\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"img/prueba/menu.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon4.addFile(u"../../img/prueba/menu.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_menu.setIcon(icon4)
         self.btn_menu.setIconSize(QSize(20, 20))
 
@@ -171,13 +173,15 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "	text-align: left;\n"
 "    padding-left: 10px;\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 129, 99);\n"
+"	color: rgb(0, 0, 0);\n"
 "}")
         icon5 = QIcon()
-        icon5.addFile(u"img/prueba/home.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon5.addFile(u"../../img/prueba/home.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_home.setIcon(icon5)
         self.btn_home.setIconSize(QSize(20, 20))
 
@@ -191,14 +195,16 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "	text-align: left;\n"
 "    padding-left: 10px;\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 129, 99);\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "")
         icon6 = QIcon()
-        icon6.addFile(u"img/prueba/libro.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon6.addFile(u"../../img/prueba/libro.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_gestion_libros.setIcon(icon6)
         self.btn_gestion_libros.setIconSize(QSize(20, 20))
 
@@ -216,15 +222,17 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "	text-align: left;\n"
 "    padding-left: 10px;\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 129, 99);\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "")
         icon7 = QIcon()
-        icon7.addFile(u"img/prueba/cerrarSesion.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon7.addFile(u"../../img/prueba/cerrarSesion.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_cerrar_sesion.setIcon(icon7)
         self.btn_cerrar_sesion.setIconSize(QSize(22, 22))
 
@@ -302,6 +310,7 @@ class Ui_MainWindow(object):
         font3.setUnderline(False)
         font3.setStrikeOut(False)
         self.label.setFont(font3)
+        self.label.setStyleSheet(u"color: rgb(0, 0, 0);")
 
         self.horizontalLayout_4.addWidget(self.label)
 
@@ -333,7 +342,7 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "}")
         icon8 = QIcon()
-        icon8.addFile(u"img/prueba/buscar.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon8.addFile(u"../../img/prueba/buscar.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton.setIcon(icon8)
         self.pushButton.setIconSize(QSize(20, 20))
 
@@ -347,7 +356,7 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "}")
         icon9 = QIcon()
-        icon9.addFile(u"img/prueba/back.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon9.addFile(u"../../img/prueba/back.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton_2.setIcon(icon9)
         self.pushButton_2.setIconSize(QSize(20, 20))
 
@@ -375,6 +384,7 @@ class Ui_MainWindow(object):
         font4.setPointSize(16)
         font4.setBold(True)
         self.label_libros_almacenados.setFont(font4)
+        self.label_libros_almacenados.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.label_libros_almacenados.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.label_libros_almacenados)
@@ -394,6 +404,7 @@ class Ui_MainWindow(object):
         self.line_2 = QFrame(self.frame_separador)
         self.line_2.setObjectName(u"line_2")
         self.line_2.setMinimumSize(QSize(0, 0))
+        self.line_2.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.line_2.setFrameShape(QFrame.Shape.HLine)
         self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
@@ -408,6 +419,7 @@ class Ui_MainWindow(object):
 
         self.tableView = QTableView(self.frame_listView)
         self.tableView.setObjectName(u"tableView")
+        self.tableView.setStyleSheet(u"color: rgb(0, 0, 0);")
 
         self.verticalLayout_8.addWidget(self.tableView)
 
@@ -441,12 +453,14 @@ class Ui_MainWindow(object):
         font5.setFamilies([u"Tahoma"])
         font5.setPointSize(12)
         self.label_config.setFont(font5)
+        self.label_config.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.label_config.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_4.addWidget(self.label_config)
 
         self.line = QFrame(self.frame_config)
         self.line.setObjectName(u"line")
+        self.line.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.line.setFrameShape(QFrame.Shape.HLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
@@ -460,13 +474,15 @@ class Ui_MainWindow(object):
 "	border: 0px;\n"
 "	text-align: left;\n"
 "    padding-left: 10px;\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 129, 99);\n"
+"	color: rgb(0, 0, 0);\n"
 "}")
         icon10 = QIcon()
-        icon10.addFile(u"img/prueba/idioma.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon10.addFile(u"../../img/prueba/idioma.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_idioma.setIcon(icon10)
         self.btn_idioma.setIconSize(QSize(20, 20))
 
