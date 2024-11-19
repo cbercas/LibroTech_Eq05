@@ -4,7 +4,6 @@ from views.login_windows import LoginWindow
 import models.inicializacion_db as initDB
 import sys
 
-
 class MainController:
     def __init__(self):
         # Crear la instancia de la aplicación
