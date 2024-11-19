@@ -71,7 +71,7 @@ class HomeWindow(QtWidgets.QMainWindow):
         self.ui.pushButton.deleteLater()  # Eliminar el widget antiguo
         self.custom_button.clicked.connect(self.on_search_button_clicked)
 
-        # Reemplazar el lineEdit con la barra de búsqueda personalizada
+        # barra de búsqueda personalizada
         self.search_bar = SearchBar()
         self.ui.horizontalLayout_4.replaceWidget(self.ui.lineEdit, self.search_bar)
         self.ui.lineEdit.deleteLater()  # Eliminar el widget antiguo
@@ -259,7 +259,7 @@ class HomeWindow(QtWidgets.QMainWindow):
             self.ui.tableView.setModel(model)
           
         finally:
-            print("ERROR AL OBTENER LOS LIBROS")
+            print("OBTENIDOS LIBROS CORRECTAMENTE")
  
 
     def on_search(self, search_text):

@@ -26,7 +26,7 @@ def create_tables():
         """,
           """
         CREATE TABLE IF NOT EXISTS libros (
-            isbn SERIAL PRIMARY KEY,  -- Generar un ID único para cada libro
+            isbn VARCHAR(20) PRIMARY KEY,
             titulo VARCHAR(255) NOT NULL,
             autor VARCHAR(255) NOT NULL,
             genero VARCHAR(100) NOT NULL,
@@ -69,9 +69,9 @@ def insert_data():
         ('usuario3@example.com', 'usuario3', 'usuario0?')
     )
     book_inserts = (
-        ('Cien años de soledad', 'Gabriel García Márquez', 'Realismo mágico', 1967),
-        ('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Novela', 1605),
-        ('1984', 'George Orwell', 'Distopía', 1949)
+        ('9780307474720', 'Cien años de soledad', 'Gabriel García Márquez', 'Realismo mágico', 1967),
+        ('9788423971044', 'Don Quijote de la Mancha', 'Miguel de Cervantes', 'Novela', 1605),
+        ('9780451524935', '1984', 'George Orwell', 'Distopía', 1949)
     )
     
     # Definir la consulta SQL para insertar los datos en la tabla 'usuarios'
@@ -82,9 +82,9 @@ def insert_data():
         """  # Se usa 'ON CONFLICT' para evitar errores de inserción si ya existe un usuario con el mismo email.
     
     book_insert_query = """
-        INSERT INTO libros (titulo, autor, genero, publicacion)
-        VALUES (%s, %s, %s, %s)
-        ON CONFLICT (titulo) DO NOTHING;
+        INSERT INTO libros (isbn, titulo, autor, genero, publicacion)
+        VALUES (%s, %s, %s, %s, %s)
+        ON CONFLICT (isbn) DO NOTHING;
         """  # Se usa 'ON CONFLICT' para evitar errores de inserción si ya existe un libro con el mismo ID.
     
     try:

@@ -91,10 +91,10 @@ class RegisterWindow(QMainWindow):
 
         # Intentar registrar al usuario a través del controlador
         if self.usuario_controller.registrar_usuario(email, nombre_usuario, password, password_confirmada):
-            print("Usuario creado con éxito")  # Mensaje en consola si el registro fue exitoso
+            print("Usuario creado con éxito")  # Mensaje en consola si el registro fue exitoso          
             self.hide()
             if self.parent() is not None:
-                self.parent().show()  # Mostrar la ventana de login si el registro fue exitoso
+                self.parent().show()  # Mostrar la ventana de login si el registro fue exitoso          
         else:
             print("Error al crear el usuario")  # Si hay algún error en el proceso de registro
 

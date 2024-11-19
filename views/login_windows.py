@@ -5,6 +5,7 @@ from views.register_windows import RegisterWindow
 from views.home_windows import HomeWindow
 from controllers.usuario_controller import UsuarioController
 
+
 class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
