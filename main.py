@@ -3,6 +3,11 @@ from PySide6.QtGui import QIcon
 from views.login_windows import LoginWindow
 import models.inicializacion_db as initDB
 import sys
+import ctypes
+
+# ID para que la app tenga un icono personalizado en la barra de tareas de windows
+myappid = 'Proyecto_Equipo05'
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 class MainController:
     def __init__(self):
