@@ -7,11 +7,6 @@ from controllers.libros_controller import LibroController
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 from Componentes_EQ05 import SearchButton, SearchBar, BackButton
 import sys
-import ctypes
-
-# Establecer el identificador único de la aplicación
-myappid = 'proyectoInterfaces.Equipo05'
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
 class HomeWindow(QtWidgets.QMainWindow):
