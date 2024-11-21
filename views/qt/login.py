@@ -170,7 +170,6 @@ class Ui_MainWindow(object):
 "font-weight: bold;\n"
 "color: #4E342E;\n"
 "text-align: center;\n"
-"text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);\n"
 "")
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 

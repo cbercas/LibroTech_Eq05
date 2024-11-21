@@ -12,7 +12,7 @@ services:
     stdin_open: true  # Equivalente a `-it`
     tty: true  # Habilita el pseudo-terminal interactivo
     ports:
-      - "60000:5432"  # Mapeo del puerto 54320 del host al puerto 5432 del contenedor
+      - "54320:5432"  # Mapeo del puerto 54320 del host al puerto 5432 del contenedor
     volumes:
       - ./postgres-data:/var/lib/postgresql/data/pgdata  # Montaje del volumen para persistir datos
     restart: no  # Configura el contenedor para que no se reinicie automáticamente

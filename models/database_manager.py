@@ -14,7 +14,7 @@ def connect_db():
             user="admin",  # Usuario de la base de datos
             password="0000",  # Contraseña del usuario
             host="localhost",  # Dirección del servidor de la base de datos
-            port="60000" # Puerto en el que escucha PostgreSQL              # Puerto en el que se ejecuta PostgreSQL
+            port="54320" # Puerto en el que escucha PostgreSQL              # Puerto en el que se ejecuta PostgreSQL
         )
         return conn  # Si la conexión es exitosa, se devuelve el objeto `conn`
     except Exception as error:
