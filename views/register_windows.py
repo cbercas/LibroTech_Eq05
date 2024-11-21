@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QApplication  # Importar QMessageBox para mostrar mensajes de error
-from PySide6.QtCore import Slot, Signal  # Importar Slot para la conexión de señales y slots
-from PySide6 import QtCore
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QApplication, QSizeGrip  # Importar QMessageBox para mostrar mensajes de error
+from PySide6.QtCore import Slot, Signal, QPropertyAnimation, QEasingCurve  # Importar Slot para la conexión de señales y slots
 from PySide6.QtGui import QIcon
+from PySide6 import QtCore, QtGui
 from views.qt.register import Ui_MainWindow  # Importar la clase generada a partir del archivo .ui
 from controllers.usuario_controller import UsuarioController  # Importar el controlador para manejar las operaciones de registro y validación del usuario
 
@@ -18,16 +18,33 @@ class RegisterWindow(QMainWindow):
         self.ui = Ui_MainWindow()  # Crear una instancia de la interfaz generada
         self.ui.setupUi(self)  # Configurar la interfaz de usuario con el método setupUi
 
+        # Configurar las banderas de la ventana
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Window)
+        self.setWindowOpacity(1)
+
         # Conecta el botón "Login" a una señal
         self.ui.login_button.clicked.connect(self.enviar_volver_signal)
 
         # Conectar el botón "Crear Cuenta" al método para registrar un nuevo usuario
         self.ui.register_button.clicked.connect(self.slot_on_boton_crear_clicked)
 
+        # Control barra de títulos
+        self.ui.btn_minimize.clicked.connect(self.control_bt_minimizar)
+        self.ui.btn_maximize.clicked.connect(self.control_bt_maximizar)
+        self.ui.btn_close.clicked.connect(lambda: self.close())
+
         # Instanciar el controlador de usuarios que manejará las operaciones de validación, creación y gestión del usuario en la base de datos
         self.usuario_controller = UsuarioController()  # Este controlador interactúa con el modelo de usuario y la base de datos
 
         self.setWindowIcon(QIcon("img/library64.ico"))
+
+        # Guardamos el tamaño original de la ventana
+        self.original_size = self.size()
+
+        # SizeGrip
+        self.gripSize = 10
+        self.grip = QSizeGrip(self)
+        self.grip.resize(self.gripSize, self.gripSize)
 
         # Bandera para controlar el cierre del programa
         self.exit_program = True
@@ -96,5 +113,76 @@ class RegisterWindow(QMainWindow):
             self.hide() 
         else:
             print("Error al crear el usuario")  # Si hay algún error en el proceso de registro
+
+    def control_bt_minimizar(self):
+        self.showMinimized()
+
+    def control_bt_normal(self): 
+        self.showNormal()
+        self.ui.btn_maximize.show()
+
+    def control_bt_maximizar(self): 
+        if self.isMaximized():
+            self.restore_window()
+        else:
+            self.showMaximized()
+
+    def restore_window(self):
+        self.resize(self.original_size)
+        screen_geometry = QtGui.QGuiApplication.primaryScreen().availableGeometry()
+        center_position = screen_geometry.center() - self.rect().center()
+        self.move(center_position)
+        self.showNormal()
+
+
+    def resizeEvent(self, event):
+        rect = self.rect()
+        self.grip.move(rect.right() - self.gripSize, rect.bottom() - self.gripSize)
+
+    def mousePressEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            if not (self.ui.btn_minimize.underMouse() or self.ui.btn_maximize.underMouse() or self.ui.btn_close.underMouse()):
+                self.clickPosition = event.globalPosition().toPoint()
+                self.is_dragging = True
+                self.was_maximized = self.isMaximized()
+            else:
+                self.is_dragging = False
+
+    def mouseMoveEvent(self, event):
+        if self.is_dragging:
+            # Restaurar ventana si estaba maximizada
+            if self.was_maximized:
+                self.restore_window()
+                self.clickPosition = event.globalPosition().toPoint() - self.rect().topLeft()
+
+            # Mover la ventana
+            self.move(self.pos() + event.globalPosition().toPoint() - self.clickPosition)
+            self.clickPosition = event.globalPosition().toPoint()
+
+            # Detectar si la ventana se arrastra hacia los bordes
+            screen_geometry = QtGui.QGuiApplication.primaryScreen().availableGeometry()
+            cursor_position = event.globalPosition().toPoint()
+
+            # Detectar borde superior (maximizar)
+            if cursor_position.y() <= screen_geometry.top():
+                self.showMaximized()
+                self.is_dragging = False  # Detener el arrastre
+
+            # Detectar borde izquierdo (ajustar a la mitad izquierda)
+            elif cursor_position.x() <= screen_geometry.left():
+                self.resize(screen_geometry.width() // 2, screen_geometry.height())
+                self.move(screen_geometry.topLeft())
+                self.is_dragging = False  # Detener el arrastre
+
+            # Detectar borde derecho (ajustar a la mitad derecha)
+            elif cursor_position.x() >= screen_geometry.right() - 1:
+                self.resize(screen_geometry.width() // 2, screen_geometry.height())
+                self.move(screen_geometry.right() - self.width(), screen_geometry.top())
+                self.is_dragging = False  # Detener el arrastre
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            self.is_dragging = False
+            self.was_maximized = False
 
 # RegistroWindow

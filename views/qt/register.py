@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QGridLayout, QLabel,
-    QLineEdit, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QSpacerItem, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QWidget)
 import img.background_rc
 import img.candado_rc
 import img.correo_rc
@@ -34,22 +34,20 @@ class Ui_MainWindow(object):
 "	border-image: url(:/cct/background.jpg);\n"
 "}")
         self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.vs_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.vs_1 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout.addItem(self.vs_2, 0, 1, 1, 1)
+        self.gridLayout.addItem(self.vs_1, 3, 1, 1, 1)
 
         self.hs_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addItem(self.hs_2, 1, 2, 1, 1)
+        self.gridLayout.addItem(self.hs_2, 2, 2, 1, 1)
 
-        self.hs_1 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.vs_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout.addItem(self.hs_1, 1, 0, 1, 1)
-
-        self.vs_1 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout.addItem(self.vs_1, 2, 1, 1, 1)
+        self.gridLayout.addItem(self.vs_2, 1, 1, 1, 1)
 
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
@@ -103,11 +101,14 @@ class Ui_MainWindow(object):
                         "t-size: 13px;\n"
 "}\n"
 "QCheckBox::indicator {\n"
+"	background-color: white;\n"
+"	border: 1px solid black;\n"
 "    width: 14px;\n"
 "    height: 14px;\n"
 "}\n"
 "QCheckBox::indicator:checked {\n"
 "    background-color: #6D4C41;\n"
+"	border: 1px solid black;\n"
 "}")
         self.gridLayout_3 = QGridLayout(self.widget)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
@@ -235,16 +236,78 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.login_button, 7, 1, 1, 3)
 
 
-        self.gridLayout.addWidget(self.widget, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.widget, 2, 1, 1, 1)
+
+        self.hs_1 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.hs_1, 2, 0, 1, 1)
+
+        self.frame = QFrame(self.centralwidget)
+        self.frame.setObjectName(u"frame")
+        self.frame.setMinimumSize(QSize(0, 30))
+        self.frame.setStyleSheet(u"background-color: rgb(165, 125, 91);")
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout = QHBoxLayout(self.frame)
+        self.horizontalLayout.setSpacing(10)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 10, 0)
+        self.horizontalSpacer = QSpacerItem(1004, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.btn_minimize = QPushButton(self.frame)
+        self.btn_minimize.setObjectName(u"btn_minimize")
+        self.btn_minimize.setMinimumSize(QSize(20, 20))
+        self.btn_minimize.setStyleSheet(u"QPushButton{\n"
+"	border: 0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(193, 161, 136);\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u"img/prueba/minus-sign.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_minimize.setIcon(icon)
+
+        self.horizontalLayout.addWidget(self.btn_minimize)
+
+        self.btn_maximize = QPushButton(self.frame)
+        self.btn_maximize.setObjectName(u"btn_maximize")
+        self.btn_maximize.setMinimumSize(QSize(20, 20))
+        self.btn_maximize.setStyleSheet(u"QPushButton{\n"
+"	border: 0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(193, 161, 136);\n"
+"}")
+        icon1 = QIcon()
+        icon1.addFile(u"img/prueba/stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_maximize.setIcon(icon1)
+
+        self.horizontalLayout.addWidget(self.btn_maximize)
+
+        self.btn_close = QPushButton(self.frame)
+        self.btn_close.setObjectName(u"btn_close")
+        self.btn_close.setMinimumSize(QSize(20, 20))
+        self.btn_close.setStyleSheet(u"QPushButton{\n"
+"	border: 0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(193, 161, 136);\n"
+"}")
+        icon2 = QIcon()
+        icon2.addFile(u"img/prueba/close.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_close.setIcon(icon2)
+
+        self.horizontalLayout.addWidget(self.btn_close)
+
+
+        self.gridLayout.addWidget(self.frame, 0, 0, 1, 3)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1109, 22))
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.password_editline.setPlaceholderText("Escriba su contraseña") 
         self.user_editline.setPlaceholderText("Escriba su nombre de usuario")
@@ -266,5 +329,8 @@ class Ui_MainWindow(object):
         self.email_icon.setText("")
         self.password_confirm_label.setText("")
         self.login_button.setText(QCoreApplication.translate("MainWindow", u"Iniciar Sesi\u00f3n", None))
+        self.btn_minimize.setText("")
+        self.btn_maximize.setText("")
+        self.btn_close.setText("")
     # retranslateUi
 

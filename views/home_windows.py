@@ -6,8 +6,6 @@ from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
 from controllers.libros_controller import LibroController
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 from Componentes_EQ05 import SearchButton, SearchBar, BackButton
-import sys
-
 
 class HomeWindow(QtWidgets.QMainWindow):
     def __init__(self, login_window=None):

@@ -1,5 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox  # Importar QMessageBox para mostrar mensajes de error
-from PySide6.QtCore import Slot
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QSizeGrip  # Importar QMessageBox para mostrar mensajes de error
+from PySide6.QtCore import Slot, QPropertyAnimation, QEasingCurve
+from PySide6 import QtCore, QtGui
 from views.qt.login import Ui_MainWindow
 from views.register_windows import RegisterWindow
 from views.home_windows import HomeWindow
@@ -12,14 +13,31 @@ class LoginWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Configurar las banderas de la ventana
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Window)
+        self.setWindowOpacity(1)
+
         # Conectar los botones a sus funciones respectivas
         self.ui.login_button.clicked.connect(self.slot_on_button_login_clicked)
         self.ui.register_button.clicked.connect(self.slot_on_button_crear_cuenta_clicked)
+
+        # Control barra de títulos
+        self.ui.btn_minimize.clicked.connect(self.control_bt_minimizar)
+        self.ui.btn_maximize.clicked.connect(self.control_bt_maximizar)
+        self.ui.btn_close.clicked.connect(lambda: self.close())
 
         self.usuario_controller = UsuarioController()
 
         # Variable para almacenar la posición de la última ventana mostrada
         self.last_position = None
+
+        # Guardamos el tamaño original de la ventana
+        self.original_size = self.size()
+
+        # SizeGrip
+        self.gripSize = 10
+        self.grip = QSizeGrip(self)
+        self.grip.resize(self.gripSize, self.gripSize)
 
     def limpiar_inputs(self):
         """Limpia los campos de texto del formulario de inicio de sesión."""
@@ -101,3 +119,74 @@ class LoginWindow(QMainWindow):
             self.move(self.last_position)
 
         self.show()
+
+    def control_bt_minimizar(self):
+            self.showMinimized()
+
+    def control_bt_normal(self): 
+        self.showNormal()
+        self.ui.btn_maximize.show()
+
+    def control_bt_maximizar(self): 
+        if self.isMaximized():
+            self.restore_window()
+        else:
+            self.showMaximized()
+
+    def restore_window(self):
+        self.resize(self.original_size)
+        screen_geometry = QtGui.QGuiApplication.primaryScreen().availableGeometry()
+        center_position = screen_geometry.center() - self.rect().center()
+        self.move(center_position)
+        self.showNormal()
+
+
+    def resizeEvent(self, event):
+        rect = self.rect()
+        self.grip.move(rect.right() - self.gripSize, rect.bottom() - self.gripSize)
+
+    def mousePressEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            if not (self.ui.btn_minimize.underMouse() or self.ui.btn_maximize.underMouse() or self.ui.btn_close.underMouse()):
+                self.clickPosition = event.globalPosition().toPoint()
+                self.is_dragging = True
+                self.was_maximized = self.isMaximized()
+            else:
+                self.is_dragging = False
+
+    def mouseMoveEvent(self, event):
+        if self.is_dragging:
+            # Restaurar ventana si estaba maximizada
+            if self.was_maximized:
+                self.restore_window()
+                self.clickPosition = event.globalPosition().toPoint() - self.rect().topLeft()
+
+            # Mover la ventana
+            self.move(self.pos() + event.globalPosition().toPoint() - self.clickPosition)
+            self.clickPosition = event.globalPosition().toPoint()
+
+            # Detectar si la ventana se arrastra hacia los bordes
+            screen_geometry = QtGui.QGuiApplication.primaryScreen().availableGeometry()
+            cursor_position = event.globalPosition().toPoint()
+
+            # Detectar borde superior (maximizar)
+            if cursor_position.y() <= screen_geometry.top():
+                self.showMaximized()
+                self.is_dragging = False  # Detener el arrastre
+
+            # Detectar borde izquierdo (ajustar a la mitad izquierda)
+            elif cursor_position.x() <= screen_geometry.left():
+                self.resize(screen_geometry.width() // 2, screen_geometry.height())
+                self.move(screen_geometry.topLeft())
+                self.is_dragging = False  # Detener el arrastre
+
+            # Detectar borde derecho (ajustar a la mitad derecha)
+            elif cursor_position.x() >= screen_geometry.right() - 1:
+                self.resize(screen_geometry.width() // 2, screen_geometry.height())
+                self.move(screen_geometry.right() - self.width(), screen_geometry.top())
+                self.is_dragging = False  # Detener el arrastre
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            self.is_dragging = False
+            self.was_maximized = False
